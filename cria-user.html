@@ -13,14 +13,19 @@
 </head>
 <body>
   <header>
-    <div class="logo">
+    <div class="header">
+      <div class="logo">
       <img src="assets/globotask.png" alt="logo globotask">
       <div class="logo-text">
         <h1>Globo<span class="especial">Tasks</span></h1>
       <h4>Cada tarefa concluída é um passo para o sucesso</h4>
-      </div>
-      
+      </div></div>
+    <div class="page-title">
+      <h2>Criar usuário</h2>
+    
     </div>
+    </div>
+
     
  <nav class="menu-lateral">
   <ul>
@@ -35,23 +40,17 @@
   </header>
   <div class="content-home">
     <div class="content-home-text">
-      <h3>Ótimo para tarefas de grupo, perfeito para você! </h3>
-      <h3>Crie já sua conta!</h3>
+      <h3>Crie um usuário e uma primeira lista para ele!</h3>
     </div>
     <div class="formulario">
 <form action="cadastrar">
-      <h4>Crie sua conta</h4>
-      <label for="email">Email</label>
-      <input type="text" id="email" placeholder="digite seu email" required>
-      <label for="senha1">Senha</label>
-      <input type="password" id="senha1" placeholder="crie sua senha" required>
-      <label for="senha2">Confirme a senha</label>
-      <input type="password" id="senha2" placeholder="digite a senha criada" required>
-       <div class="checkbox-container">
-      <input type="checkbox" name="termos" id="termos">
-      <label for="termos">aceito <a href="#">termos e condições</a></label></div>
-      <caption></caption>
-      <button type="button" onclick="window.location.href='cria-user.html'">criar</button>
+      <h4>Crie um usuário</h4>
+      <label for="nome">Nome</label>
+      <input type="text" id="nome" placeholder="nome do usuário" required>
+      <label for="lista">Nome da Lista</label>
+      <input type="text" id="lista" placeholder="digite seu email" required>
+      <caption>não se preocupe, outras listas podem ser criadas depois</caption>
+      <button type="button" onclick="window.location.href='nova-lista.html'">criar</button>
     </form>
 
     </div>
