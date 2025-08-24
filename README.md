@@ -33,6 +33,7 @@ As telas e fluxos abaixo estão implementados com navegação entre páginas:
 ## Mapa de Navegação
 
 * **`index.html`** → Hub inicial com os principais acessos
+* **`forms.html`** / **`forms.html`** → Tela de **Cadastro da conta principal**
 * **`forms.html`** / **`FormUser.html`** → Tela de **Cadastro de Usuário**
 * **`listas.html`** / **`FormLista.html`** → **Listas do Usuário** (criar, listar, excluir)
 * **`tarefas.html`** / **`FormListaChecked.html`** → **Tarefas da Lista** (adicionar, marcar como concluída, remover)
