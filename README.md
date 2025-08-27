@@ -33,9 +33,12 @@ As telas e fluxos abaixo estão implementados com navegação entre páginas:
 ## Mapa de Navegação
 
 * **`index.html`** → Hub inicial com os principais acessos
-* **`forms.html`** / **`forms.html`** → Tela de **Cadastro da conta principal**
+* **`forms.html`** / **`forms.html`** → Tela de **Cadastro da conta principalgit add.**
 * **`forms.html`** / **`FormUser.html`** → Tela de **Cadastro de Usuário**
 * **`listas.html`** / **`FormLista.html`** → **Listas do Usuário** (criar, listar, excluir)
+* **`display-usuarios.html`** / **`display-usuarios.html`** → **Usuários cadastrados** (criar, listar, excluir)
+* **`exibe-listas-usuarios.html`** / **`exibe-listas-usuario.html`** → **Listas de Usuário** (criar, listar, excluir)
+* **`display-conta.html`** / **`display-conta.html`** → **Conta principal** (editar, listar, excluir)
 * **`tarefas.html`** / **`FormListaChecked.html`** → **Tarefas da Lista** (adicionar, marcar como concluída, remover)
 
 ---
@@ -48,6 +51,9 @@ Projeto-Modulo-5---Globotech/ GloboTascks
 ├── forms.html | forms.html     # Nessa etapa vocÊ cadastra a conta principal
 ├── FormUser.html | FormUser.html   # aqui você cria o usuário e as listas dele
 ├── listas.html | FormLista.html# Listas de um usuário
+├── display-usuarios.html | display-usuarios.html# Exibe os usuários criados e suas listas
+├── exibe-listas-usuario.html | exibe-listas-usuario.html# Exibe todas as listas do usuário selecionado
+├── display-conta.html | display-conta.html# Exite os dados da conta principal
 ├── tarefas.html                # Tarefas de uma lista
 ├── assets/
 │   ├── css/
