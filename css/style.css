@@ -6,6 +6,11 @@ body {
   font-family: var(--font-family);
 }
 
+span {
+  color: var(--color-tom-escuro);
+  padding-top: 5px;
+}
+
 a {
   text-decoration: none;
   color: var(--color-detalhe);
@@ -295,6 +300,103 @@ form textarea:focus {
   background-color: var(--color-branco);
 }
 
+/* ----------- Artigos ------------*/
+article {
+  background-color: var(--color-branco);
+  border-radius: var(--radius);
+  padding: 20px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 320px;
+  position: relative; 
+}
+
+article > div {
+  display: flex;
+  align-items: center;      
+  justify-content: space-between;
+  margin: 10px;
+}
+
+article p,
+article span {
+  margin: 0; 
+  display: block;
+}
+
+article button {
+  height: 25px;
+  width: 63px;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+
+/* Botão lixeira */
+.button-trash {
+  width: 16px;
+  height: 16px;
+  background: var(--icon-trash) no-repeat center;
+  background-size: contain;
+  border: none;
+  cursor: pointer;
+  position: absolute; 
+  top: 10px;
+  right: 10px;
+}
+
+/* ----------- Usuários ------------*/
+.content-users{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+  padding: 50px 100px 20px 20px;
+  justify-items: center; 
+  
+}
+
+.btn {
+  display: flex;
+  align-items:center ;
+  justify-content: center;
+  padding-right: 100px;
+}
+
+
+/* ----------- Conta ------------*/
+
+.content-conta {
+  display: flex;
+  justify-content: center;
+  padding: 50px 100px 20px 20px;
+
+}
+
+.conta {
+  background-color: var(--color-branco);
+  width: 850px;
+  height: 400px;
+  border-radius: var(--radius);
+  position: relative;
+  padding: 15px;
+}
+
+.forms-conta {
+  background-color: var(--color-branco);
+  display: flex;
+  justify-content: space-around;
+}
+
+.forms-conta h4 {
+  color: var(--color-letras);
+  padding: 10px;
+}
+
+.acoes-conta {
+  display: flex;
+  justify-content: center;
+}
 /* ----------- Botões ------------*/
 button {
   width: 302px;
@@ -358,6 +460,7 @@ button:hover {
 
 
 /* ----------- ícones ------------*/
+
 :root {
   --icon-trash: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='17' height='17' fill='none' viewBox='0 0 17 17'><path d='M10.0956 7.56263V12.1766M7.46129 7.56263V12.1766M4.82694 4.92608V12.7039C4.82694 13.4422 4.82694 13.8111 4.9705 14.0931C5.09679 14.3411 5.29814 14.5432 5.54598 14.6696C5.82747 14.8131 6.19614 14.8131 6.93238 14.8131H10.6245C11.3608 14.8131 11.7289 14.8131 12.0104 14.6696C12.2583 14.5432 12.4603 14.3411 12.5866 14.0931C12.73 13.8114 12.73 13.4428 12.73 12.7059V4.92608M4.82694 4.92608H6.14411M4.82694 4.92608H3.50977M6.14411 4.92608H11.4128M6.14411 4.92608C6.14411 4.31184 6.14411 4.00487 6.24438 3.76261C6.37806 3.4396 6.63431 3.18281 6.95706 3.04902C7.19912 2.94867 7.50615 2.94867 8.11988 2.94867H9.43705C10.0508 2.94867 10.3576 2.94867 10.5997 3.04902C10.9224 3.18281 11.1788 3.4396 11.3125 3.76261C11.4127 4.00487 11.4128 4.31184 11.4128 4.92608M11.4128 4.92608H12.73M12.73 4.92608H14.0472' stroke='%23B3B3B3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
 
