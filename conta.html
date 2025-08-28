@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GloboTasks - Conta</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="assets/globotask.png" type="image/png">
 
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="assets/globotask.png" type="image/png" />
 </head>
 
 <body>
   <header>
     <div class="header">
       <div class="logo">
-        <img src="assets/globotask.png" alt="logo globotask">
+        <img src="assets/globotask.png" alt="logo globotask" />
         <div class="logo-text">
           <h1>Globo<span class="especial">Tasks</span></h1>
           <h4>Cada tarefa concluída é um passo para o sucesso</h4>
         </div>
       </div>
+
       <div class="page-title">
         <h2>Conta</h2>
       </div>
@@ -36,26 +36,25 @@
         <li class="icon-config"><a href="conta.html"></a></li>
       </ul>
     </nav>
-
-    </nav>
   </header>
 
   <div class="content-conta">
     <div class="conta">
-      <button class="button-trash"></button>
-      <div class="forms-conta">
+      <button class="button-trash" aria-label="Excluir conta"></button>
 
+      <div class="forms-conta">
+        <!-- Dados da Conta -->
         <div class="dados-conta">
           <h4>Dados da Conta</h4>
           <form>
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" value="André Assis">
+            <input type="text" id="nome" name="nome" value="Tales Honório" />
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="andreassis@globo.com">
+            <input type="email" id="email" name="email" value="honoriotales@gmail.com" />
 
             <label for="telefone">Telefone:</label>
-            <input type="tel" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx">
+            <input type="tel" id="telefone" name="telefone" placeholder="(xx) xxxxx-xxxx" />
             <small>seu telefone facilita na recuperação da senha</small>
           </form>
         </div>
@@ -65,25 +64,22 @@
           <h4>Alterar senha</h4>
           <form>
             <label for="senha-atual">Senha atual</label>
-            <input type="password" id="senha-atual" name="senha-atual" placeholder="digite sua senha atual">
+            <input type="password" id="senha-atual" name="senha-atual" placeholder="digite sua senha atual" />
 
             <label for="nova-senha">Nova senha</label>
-            <input type="password" id="nova-senha" name="nova-senha" placeholder="digite a nova senha">
+            <input type="password" id="nova-senha" name="nova-senha" placeholder="digite a nova senha" />
 
             <label for="confirma-senha">Confirme a nova senha</label>
-            <input type="password" id="confirma-senha" name="confirma-senha" placeholder="digite a nova senha">
+            <input type="password" id="confirma-senha" name="confirma-senha" placeholder="digite a nova senha" />
           </form>
         </div>
-        </section>
-
-
       </div>
+
+      <!-- Ações -->
       <div class="acoes-conta">
         <button type="submit">salvar dados</button>
       </div>
-    </div> <!-- Botão salvar -->
-
+    </div>
   </div>
 </body>
-
 </html>

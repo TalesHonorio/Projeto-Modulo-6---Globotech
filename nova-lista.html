@@ -48,43 +48,55 @@
           <option>André Assis</option>
           <option>Mirra Bernardo</option>
           <option>Tales Honório</option>
-
         </select>
       </div>
     </div>
     <div class="formulario">
-      <form id="lista-form" autocomplete="off">
-        <h4>Novelas</h4>
-        <input id="novo-item" class="todo-input" type="text" placeholder="adicione um item ou tarefa" />
-        <div class="item">
-          <input type="checkbox" name="item1" id="">
-          <label for="item1">Avenida Brasil</label>
-        </div>
-        <div class="divisor"></div>
-        <div class="item">
-          <input type="checkbox" name="item1" id="">
-          <label for="item1">Avenida Brasil</label>
-        </div>
-        <div class="divisor"></div>
-        <div class="item">
-          <input type="checkbox" name="item1" id="">
-          <label for="item1">Avenida Brasil</label>
-        </div>
-        <div class="divisor"></div>
-        <div class="item">
-          <input type="checkbox" name="item1" id="">
-          <label for="item1">Avenida Brasil</label>
-        </div>
-        <div class="divisor"></div>
-        <button type="button" onclick="window.location.href='usuarios.html'">salvar</button>
+  <form id="lista-form" autocomplete="off">
+  <h4>Novelas</h4>
+  <input id="novo-item" class="todo-input" type="text" placeholder="adicione um item ou tarefa" />
 
-      </form>
+  <div class="item">
+    <label for="item1">
+      <input type="checkbox" id="item1" name="item1">
+      <span>Avenida Brasil</span>
+    </label>
+    <button type="button" class="remover" aria-label="remover item"></button>
+  </div>
+  <div class="divisor"></div>
+
+  <div class="item">
+    <label for="item2">
+      <input type="checkbox" id="item2" name="item2">
+      <span>Da Cor do Pecado</span>
+    </label>
+    <button type="button" class="remover" aria-label="remover item"></button>
+  </div>
+  <div class="divisor"></div>
+
+  <div class="item">
+    <label for="item3">
+      <input type="checkbox" id="item3" name="item3">
+      <span>Alma Gêmea</span>
+    </label>
+    <button type="button" class="remover" aria-label="remover item"></button>
+  </div>
+  <div class="divisor"></div>
+
+  <div class="item">
+    <label for="item4">
+      <input type="checkbox" id="item4" name="item4">
+      <span>Rei do Gado</span>
+    </label>
+    <button type="button" class="remover" aria-label="remover item"></button>
+  </div>
+  <div class="divisor"></div>
+
+  <button type="button" onclick="window.location.href='usuarios.html'">salvar</button>
+</form>
 
     </div>
-
   </section>
 
-
 </body>
-
 </html>
