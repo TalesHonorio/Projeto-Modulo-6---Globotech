@@ -281,7 +281,7 @@ form input[type="checkbox"] {
   display: flex;
   align-items: flex-start;
   gap: 6px;
-  margin: 0;
+  margin: 0px 0px 10px;
 }
 form input::placeholder,
 form textarea::placeholder {
