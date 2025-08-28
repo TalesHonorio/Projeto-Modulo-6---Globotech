@@ -75,6 +75,7 @@ Projeto-Modulo-5---Globotech/ GloboTasks
 │
 ├── assets/
 │   └── globotask.png     # Logo do projeto
+│   └── home.png          # Preview do projeto
 │
 ├── css/
 │   └── style.css         # Estilos principais (layout, tipografia, responsivo)
@@ -108,18 +109,22 @@ Projeto-Modulo-5---Globotech/ GloboTasks
 
 
 🔗 [Projeto‑Modulo‑1 — Globotech](https://github.com/mirrabernardo/Projeto-Modulo-1---Globotech)  
+
 **Fase 1 – Análise de Engajamento com Python Puro**  
 Projeto desenvolvido com Python padrão, sem dependências externas. Implementa scripts para leitura, limpeza e validação de interações em CSV.
 
 🔗 [Projeto‑Modulo‑2 — Globotech](https://github.com/mirrabernardo/Projeto-Modulo-2---Globotech)  
+
 **Fase 2 – Evolução com Programação Orientada a Objetos (POO)**  
 Refatoração do sistema usando POO com lógica de processamento orquestrada pela classe SistemaAnaliseEngajamento.
 
 🔗 [Projeto‑Modulo‑3 — Globotech](https://github.com/mirrabernardo/Projeto-Modulo-3---Globotech)  
+
 **Fase 3 – Estruturas de Dados: Fila e Árvore Binária (BST)**  
 Implementação de ingestão via fila FIFO e gerenciamento de dados através de árvores binárias de busca (BST) para armazenar e buscar usuários e conteúdos de forma eficiente.
 
-🔗 [Projeto‑Modulo‑4 — Globotech](https://github.com/mirrabernardo/Projeto-Modulo-4---Globotech) 
+🔗 [Projeto‑Modulo‑4 — Globotech](https://github.com/mirrabernardo/Projeto-Modulo-4---Globotech)
+
 **Fase 4 – Projeto Unificado com Banco de Dados Relacional**
 Integração do sistema de análise de engajamento com persistência em banco de dados MySQL. Abrange modelagem conceitual e lógica (MER/DER), criação do schema relacional, carga de dados automatizada e execução de consultas SQL para análises otimizadas. O projeto consolida as fases anteriores em uma arquitetura escalável e estruturada, conectando Python e SQL de forma integrada.
 
