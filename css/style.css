@@ -46,7 +46,6 @@
   --icon-more: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none' viewBox='0 0 10 6'><path d='M9 1L5 5L1 1' stroke='%230139A6' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
   --icon-divider: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='274' height='1' viewBox='0 0 274 1' fill='none'><line y1='0.5' x2='274' y2='0.5' stroke='%23D8C5FF'/></svg>");
   --icon-remove: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='22' height='22' fill='none' viewBox='0 0 22 22'><path d='M7.21608 11.3285H14.241M3.70361 15.5472V7.11022C3.70361 6.12582 3.70361 5.63325 3.89503 5.25726C4.06341 4.92652 4.33188 4.65782 4.66234 4.48931C5.03802 4.29773 5.53017 4.29773 6.51376 4.29773H14.9437C15.9273 4.29773 16.4188 4.29773 16.7945 4.48931C17.1249 4.65782 17.3939 4.92652 17.5622 5.25726C17.7537 5.63325 17.7537 6.12545 17.7537 7.10986V15.5468C17.7537 16.5312 17.7537 17.0234 17.5622 17.3994C17.3939 17.7302 17.1249 17.9994 16.7945 18.1679C16.4192 18.3593 15.9283 18.3593 14.9466 18.3593H6.51087C5.52921 18.3593 5.03765 18.3593 4.66234 18.1679C4.33188 17.9994 4.06341 17.7303 3.89503 17.3995C3.70361 17.0235 3.70361 16.5316 3.70361 15.5472Z' stroke='%23B3B3B3' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
-
 }
 
 /* ------------------ Resetar estilos base -------------------*/
@@ -408,20 +407,20 @@ article button {
 }
 
 /* Centralizar botão “+” no rodapé do cartão */
-.lista .adicionar-item{
+.lista .adicionar-item {
   display: block;
   margin: 16px auto 4px;
   width: 28px;
   height: 28px;
-  border: 0;                                
+  border: 0;
   background: var(--icon-add) no-repeat center;
-  background-size: 20px;                     
-  color: transparent;                        
+  background-size: 20px;
+  color: transparent;
   font-size: 0;
   cursor: pointer;
 }
 
-.lista .adicionar-item:hover{
+.lista .adicionar-item:hover {
   filter: brightness(0.95);
 }
 
@@ -445,33 +444,36 @@ article button {
   justify-content: center;
 }
 
-  /* ------------------ centralizar e suavizar o texto auxiliar do formulário -------------------*/
-.formulario small{
-  display: block;                 /* vira bloco pra poder centralizar */
+/* ------------------ centralizar e suavizar o texto auxiliar do formulário -------------------*/
+.formulario small {
+  display: block; /* vira bloco pra poder centralizar */
   text-align: center;
   margin: 12px 0 16px;
   color: var(--color-letras);
   font-size: 14px;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 /* ------------------ deixar o botão largo, centralizado e com visual do mock -------------------*/
-.formulario form button{
+.formulario form button {
   display: block;
   width: 100%;
   height: 48px;
-  margin: 0;                      /* tira margens estranhas */
+  margin: 0; /* tira margens estranhas */
   border: 0;
   border-radius: 10px;
   background: var(--color-tom-escuro);
   color: var(--color-fundo);
   font-size: 18px;
   cursor: pointer;
-  transition: filter .2s, transform .02s;
+  transition: filter 0.2s, transform 0.02s;
 }
-.formulario form button:hover{ filter: brightness(1.05); }
-.formulario form button:active{ transform: scale(.99); }
-
+.formulario form button:hover {
+  filter: brightness(1.05);
+}
+.formulario form button:active {
+  transform: scale(0.99);
+}
 
 /* ------------------ Estilizar página de conta -------------------*/
 .content-conta {
@@ -566,7 +568,6 @@ button:hover {
 
 /* Desktop (>= 769px) – reforçar regras e z-index */
 @media (min-width: 769px) {
-
   .menu-lateral {
     position: fixed;
     top: 0;
@@ -606,7 +607,6 @@ button:hover {
 
 /* Mobile (<= 768px) – transformar em barra inferior */
 @media (max-width: 768px) {
-
   body {
     width: 100%;
   }
@@ -723,7 +723,6 @@ button:hover {
     gap: 16px;
     padding: 16px;
   }
-  
 
   /* Usar 1 coluna para cards de usuários */
   .content-users {
@@ -731,7 +730,6 @@ button:hover {
     grid-template-columns: 1fr;
     gap: 12px;
     padding: 12px 12px 24px;
-
   }
   article {
     width: 100%;
