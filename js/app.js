@@ -1,125 +1,113 @@
-// Arquivo principal - inicializa os scripts em cada página
-
+// js/app.js
 document.addEventListener("DOMContentLoaded", () => {
+  // FOOTER padrão
+  const nomes = ["André", "Mirra Bernardo", "Tales Honório"];
+  const footer = document.createElement("footer");
+  footer.classList.add("footer");
+  footer.style.textAlign = "center";
+  footer.style.marginTop = "2rem";
+  footer.style.padding = "1rem 0";
+  footer.style.borderTop = "1px solid #ccc";
+  footer.textContent = "Equipe: " + nomes.join(" · ");
+  document.body.appendChild(footer);
+
+  // -------------------------------
+  // Funções de apoio
+  // -------------------------------
+  function criarItem(listaUl, texto) {
+    const li = document.createElement("li");
+
+    const label = document.createElement("label");
+    const input = document.createElement("input");
+    input.type = "checkbox";
+
+    const span = document.createElement("span");
+    span.textContent = texto;
+
+    label.appendChild(input);
+    label.appendChild(span);
+
+    const btnRemover = document.createElement("button");
+    btnRemover.classList.add("remover");
+    btnRemover.textContent = "-";
+    btnRemover.addEventListener("click", () => {
+      li.remove();
+    });
+
+    li.appendChild(label);
+    li.appendChild(btnRemover);
+    listaUl.appendChild(li);
+  }
+
+  function adicionarEventosLista(listaDiv) {
+    const btnAdicionar = listaDiv.querySelector(".adicionar-item");
+    if (btnAdicionar) {
+      btnAdicionar.addEventListener("click", () => {
+        const texto = prompt("Digite o novo item:");
+        if (texto) {
+          const ul = listaDiv.querySelector("ul");
+          criarItem(ul, texto);
+        }
+      });
+    }
+
+    listaDiv.querySelectorAll(".remover").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        btn.closest("li").remove();
+      });
+    });
+  }
+
+  // -------------------------------
+  // Detectar página e aplicar lógica
+  // -------------------------------
   const path = window.location.pathname;
 
-  // Página de usuários
-  if (path.includes("usuarios.html")) {
-    renderUsers();
-    const form = document.querySelector("#user-form");
+  // Página NOVA-LISTA
+  if (path.includes("nova-lista.html")) {
+    const form = document.getElementById("lista-form");
     if (form) {
-      form.addEventListener("submit", e => {
-        e.preventDefault();
-        const name = form.elements["name"].value;
-        const email = form.elements["email"].value;
-        addUser(name, email);
-        form.reset();
-        renderUsers();
-      });
+      const btnSalvar = form.querySelector("button[type='button']");
+      if (btnSalvar) {
+        btnSalvar.addEventListener("click", () => {
+          alert("Lista salva com sucesso!");
+          window.location.href = "usuarios.html";
+        });
+      }
     }
   }
 
-  // Página de listas
+  // Página LISTAS
   if (path.includes("listas.html")) {
-    renderLists();
-    const form = document.querySelector("#list-form");
-    if (form) {
-      form.addEventListener("submit", e => {
-        e.preventDefault();
-        const userId = parseInt(form.elements["userId"].value);
-        const title = form.elements["title"].value;
-        addList(userId, title);
-        form.reset();
-        renderLists();
-      });
-    }
-  }
+    document.querySelectorAll(".lista").forEach((listaDiv) => {
+      adicionarEventosLista(listaDiv);
+    });
 
-  // Página de tarefas
-  if (path.includes("tarefas.html")) {
-    renderTasks();
-    const form = document.querySelector("#task-form");
-    if (form) {
-      form.addEventListener("submit", e => {
-        e.preventDefault();
-        const listId = parseInt(form.elements["listId"].value);
-        const description = form.elements["description"].value;
-        addTask(listId, description);
-        form.reset();
-        renderTasks();
+    const btnNovaLista = document.querySelector(".btn button");
+    if (btnNovaLista) {
+      btnNovaLista.addEventListener("click", () => {
+        const nomeLista = prompt("Digite o nome da nova lista:");
+        if (nomeLista) {
+          const grid = document.querySelector(".listas");
+          const novaDiv = document.createElement("div");
+          novaDiv.classList.add("lista");
+
+          const h4 = document.createElement("h4");
+          h4.textContent = nomeLista;
+
+          const ul = document.createElement("ul");
+          const btnAdd = document.createElement("button");
+          btnAdd.classList.add("adicionar-item");
+          btnAdd.textContent = "+";
+
+          novaDiv.appendChild(h4);
+          novaDiv.appendChild(ul);
+          novaDiv.appendChild(btnAdd);
+
+          grid.appendChild(novaDiv);
+          adicionarEventosLista(novaDiv);
+        }
       });
     }
   }
 });
-
-
-// ---------------- RENDER FUNCTIONS ----------------
-
-function renderUsers() {
-  const container = document.querySelector("#users-list");
-  if (!container) return;
-  container.innerHTML = "";
-  getUsers().forEach(u => {
-    const li = document.createElement("li");
-    li.textContent = `${u.name} (${u.email})`;
-
-    const btnDel = document.createElement("button");
-    btnDel.textContent = "Excluir";
-    btnDel.onclick = () => {
-      deleteUser(u.id);
-      renderUsers();
-    };
-
-    li.appendChild(btnDel);
-    container.appendChild(li);
-  });
-}
-
-function renderLists() {
-  const container = document.querySelector("#lists-list");
-  if (!container) return;
-  container.innerHTML = "";
-  getLists().forEach(l => {
-    const li = document.createElement("li");
-    const user = getUsers().find(u => u.id === l.userId);
-    li.textContent = `${l.title} (Usuário: ${user ? user.name : "?"})`;
-
-    const btnDel = document.createElement("button");
-    btnDel.textContent = "Excluir";
-    btnDel.onclick = () => {
-      deleteList(l.id);
-      renderLists();
-    };
-
-    li.appendChild(btnDel);
-    container.appendChild(li);
-  });
-}
-
-function renderTasks() {
-  const container = document.querySelector("#tasks-list");
-  if (!container) return;
-  container.innerHTML = "";
-  getTasks().forEach(t => {
-    const li = document.createElement("li");
-    li.textContent = `${t.description} ${t.done ? "✔️" : ""}`;
-
-    const btnToggle = document.createElement("button");
-    btnToggle.textContent = t.done ? "Desmarcar" : "Concluir";
-    btnToggle.onclick = () => {
-      toggleTaskDone(t.id);
-      renderTasks();
-    };
-
-    const btnDel = document.createElement("button");
-    btnDel.textContent = "Excluir";
-    btnDel.onclick = () => {
-      deleteTask(t.id);
-      renderTasks();
-    };
-
-    li.appendChild(btnToggle);
-    li.appendChild(btnDel);
-    container.appendChild(li);
-  });
-}
