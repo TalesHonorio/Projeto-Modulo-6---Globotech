@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GloboTasks - Nova Lista</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../assets/globotask.png" type="image/png" />
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <section class="content-home">
+    <div class="content-home-text">
+      <h3>Hora de adicionar tarefas à sua lista!</h3>
+      <!-- O nome do usuário também pode ser exibido dinamicamente -->
+      <h4 id="usuario-nome"></h4>
+    </div>
+
+    <div class="formulario">
+      <form id="lista-form" autocomplete="off">
+        <!-- Esse título será atualizado pelo JS -->
+        <h4 id="titulo-lista">Carregando...</h4>
+
+        <input 
+          id="novo-item" 
+          class="todo-input" 
+          type="text" 
+          placeholder="adicione um item ou tarefa" 
+        />
+
+        <div id="itens-container"></div>
+
+        <button type="button" id="salvar-lista">salvar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts globais -->
+  <script src="../js/services.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/users.js"></script>
+  <script src="../js/lists.js"></script>
+  <script src="../js/tasks.js"></script>
+
+  <!-- Script específico -->
+  <script src="../js/nova-lista.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GloboTasks - Criar Usuário</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../assets/globotask.png" type="image/png" />
+</head>
+
+<body>
+  <!-- Header -->
+  <div id="header-container"></div>
+
+  <section class="content-home">
+    <div class="content-home-text">
+      <h3>Crie um usuário e uma primeira lista para ele!</h3>
+    </div>
+
+    <div class="formulario">
+      <form id="formCriaUsuario" novalidate>
+        <h4>Crie um usuário</h4>
+
+        <label for="nome">Nome</label>
+        <input 
+          type="text" id="nome" name="nome" 
+          placeholder="nome do usuário" 
+          required minlength="2" autocomplete="name" />
+
+        <label for="lista">Nome da Lista</label>
+        <input 
+          type="text" id="lista" name="lista" 
+          placeholder="nome da primeira lista" 
+          required minlength="2" />
+
+        <small>Não se preocupe, outras listas podem ser criadas depois.</small>
+
+        <button type="submit">criar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts globais -->
+  <script src="../js/services.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/users.js"></script>
+  <script src="../js/lists.js"></script>
+  <script src="../js/tasks.js"></script>
+
+  <!-- Script específico desta página -->
+  <script src="../js/cria-user.js"></script>
+</body>
+</html>

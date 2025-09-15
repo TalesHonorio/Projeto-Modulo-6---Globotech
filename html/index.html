@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GloboTasks</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sulphur+Point:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="../assets/globotask.png" type="image/png" />
+</head>
+
+<body>
+  <!-- Header vem de components/header.html -->
+  <div id="header-container"></div>
+
+  <section class="content-home">
+    <div class="content-home-text">
+      <h3>Ótimo para tarefas de grupo, perfeito para você!</h3>
+      <h3>Crie já sua conta!</h3>
+    </div>
+
+    <div class="formulario">
+      <form id="formCadastro" method="get" autocomplete="off">
+
+        <h4>Crie sua conta</h4>
+
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="digite seu email"
+          required
+          autocomplete="email"
+        />
+
+        <label for="senha1">Senha</label>
+        <input
+          type="password"
+          id="senha1"
+          name="senha"
+          placeholder="crie sua senha"
+          required
+          minlength="6"
+          autocomplete="new-password"
+        />
+
+        <label for="senha2">Confirme a senha</label>
+        <input
+          type="password"
+          id="senha2"
+          name="confirma_senha"
+          placeholder="digite a senha criada"
+          required
+          autocomplete="new-password"
+        />
+
+        <div class="checkbox-container">
+          <input type="checkbox" name="termos" id="termos" required />
+          <label for="termos">
+            <small>aceito <a href="#">termos e condições</a></small>
+          </label>
+        </div>
+
+        <button type="submit">criar</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer vem de components/footer.html -->
+  <div id="footer-container"></div>
+
+  <!-- Scripts globais -->
+  <script src="../js/services.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/users.js"></script>
+  <script src="../js/lists.js"></script>
+  <script src="../js/tasks.js"></script>
+
+  <!-- Script específico do index -->
+  <script src="../js/index.js"></script>
+</body>
+</html>
