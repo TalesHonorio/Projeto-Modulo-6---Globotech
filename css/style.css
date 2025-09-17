@@ -1,4 +1,5 @@
 /* ------------------ Definir variáveis, tokens e ícones globais -------------------*/
+
 :root {
   /* Definir tipografia */
   --font-family: "Sulphur Point", sans-serif;
@@ -203,29 +204,35 @@ p {
 }
 /* Mapear ícones do menu */
 .menu-lateral li.icon-list a {
-  background-image: var(--icon-list);
+  -webkit-mask-image: var(--icon-list);
+  mask-image: var(--icon-list);
 }
 .menu-lateral li.icon-user a {
-  background-image: var(--icon-user);
+  -webkit-mask-image: var(--icon-user);
+  mask-image: var(--icon-user);
 }
 .menu-lateral li.icon-add-user a {
-  background-image: var(--icon-add-user);
+  -webkit-mask-image: var(--icon-add-user);
+  mask-image: var(--icon-add-user);
 }
 .menu-lateral li.icon-config a {
-  background-image: var(--icon-config);
+  -webkit-mask-image: var(--icon-config);
+  mask-image: var(--icon-config);
 }
+
 /* ------------------ Estilizar footer -------------------*/
 footer {
   color: var(--color-cinza);
   text-align: center;
   font-size: var(--font-p);
+  
 }
 
 /* ------------------ Estilizar componentes gerais -------------------*/
 .item {
   padding-top: 10px;
   display: flex;
-  align-items: flex-start; 
+  align-items: flex-start;
   justify-content: space-between; /* texto/checkbox à esquerda, botão à direita */
 }
 
@@ -246,8 +253,16 @@ footer {
   width: 302px;
   height: 1px;
   margin: 10px 0;
-  background: var(--icon-divider) no-repeat center;
-  background-size: cover;
+  background: none;
+  background-color: var(--color-detalhe);
+  -webkit-mask-image: var(--icon-divider);
+  mask-image: var(--icon-divider);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: cover;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: cover;
 }
 
 /* ------------------ Estilizar formulários -------------------*/
@@ -267,7 +282,6 @@ form label {
   margin-bottom: 6px;
   color: var(--color-letras);
   font-weight: var(--font-regular);
-
 }
 form input,
 form select,
@@ -344,8 +358,16 @@ article button {
 .button-trash {
   width: 16px;
   height: 16px;
-  background: var(--icon-trash) no-repeat center;
-  background-size: contain;
+  background: none;
+  background-color: var(--color-cinza);
+  -webkit-mask-image: var(--icon-trash);
+  mask-image: var(--icon-trash);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
   border: none;
   cursor: pointer;
   position: absolute;
@@ -398,21 +420,29 @@ article button {
   vertical-align: middle;
 }
 /* Posicionar botão “–” à direita */
-.lista .remover, .item .remover{
+.lista .remover,
+.item .remover {
   width: 28px;
   height: 28px;
   border: none;
   border-radius: 6px;
-  background: var(--icon-remove) no-repeat center;
-  background-size: 60%;
-  background-color: transparent;
+  background: none;
+  background-color: var(--color-cinza);
+  -webkit-mask-image: var(--icon-remove);
+  mask-image: var(--icon-remove);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: 60% 60%;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 60% 60%;
   cursor: pointer;
   transition: filter 0.2s, transform 0.1s;
   flex-shrink: 0; /* não encolhe */
 }
 
 .remover:hover {
-  filter: brightness(0.8);
+  background-color: var(--color-tema1);
 }
 
 .remover:active {
@@ -426,15 +456,23 @@ article button {
   width: 28px;
   height: 28px;
   border: 0;
-  background: var(--icon-add) no-repeat center;
-  background-size: 20px;
+  background: none;
+  background-color: var(--color-letras);
+  -webkit-mask-image: var(--icon-add);
+  mask-image: var(--icon-add);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: 20px 20px;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: 20px 20px;
   color: transparent;
   font-size: 0;
   cursor: pointer;
 }
 
 .lista .adicionar-item:hover {
-  filter: brightness(0.95);
+  background-color: var(--color-tema1);
 }
 
 /* Evitar fixar 10% de largura em botões internos */
@@ -456,7 +494,6 @@ article button {
   align-items: center;
   justify-content: center;
 }
-
 
 /* ------------------ centralizar e suavizar o texto auxiliar do formulário -------------------*/
 .formulario small {
@@ -535,12 +572,20 @@ button:hover {
 }
 
 .checkbox {
-  width: 27px;
-  height: 27px;
-  background: var(--icon-checkbox-unchecked) no-repeat center;
+  background: none;
+  background-color: var(--color-letras);
+  -webkit-mask-image: var(--icon-checkbox-unchecked);
+  mask-image: var(--icon-checkbox-unchecked);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
 }
 .checkbox.checked {
-  background: var(--icon-checkbox-checked) no-repeat center;
+  -webkit-mask-image: var(--icon-checkbox-checked);
+  mask-image: var(--icon-checkbox-checked);
 }
 
 .select-container {
@@ -565,8 +610,16 @@ button:hover {
   transform: translateY(-50%);
   width: 16px;
   height: 16px;
-  background: var(--icon-more) no-repeat center;
-  background-size: contain;
+  background: none;
+  background-color: var(--color-letras);
+  -webkit-mask-image: var(--icon-more);
+  mask-image: var(--icon-more);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
   pointer-events: none;
 }
 
@@ -608,13 +661,25 @@ button:hover {
     width: 20px;
     height: 20px;
   }
-  .menu-lateral li a {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+ .menu-lateral li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: none;
+  background-color: var(--color-branco); /* branco padrão */
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  transition: background-color 0.2s;
+}
+.menu-lateral li a:hover {
+  background-color: var(--color-tema1); /* roxo ao hover */
+}
+
+
     text-decoration: none;
   }
 }

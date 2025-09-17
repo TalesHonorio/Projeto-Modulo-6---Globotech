@@ -65,6 +65,7 @@ Projeto-Modulo-6---Globotech/
 ```
 ---
 ## Integração com API (crudcrud)
+
 Para simular um backend real, utilizamos o serviço crudcrud
 , que gera uma API REST online de forma gratuita.
 ---
