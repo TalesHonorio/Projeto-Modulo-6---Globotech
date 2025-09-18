@@ -1,74 +1,111 @@
 // js/conta.js
-const formDados = document.querySelector(".dados-conta form");
-const formSenha = document.querySelector(".alterar-senha form");
+const formDados  = document.querySelector(".dados-conta form");
+const formSenha  = document.querySelector(".alterar-senha form");
 const btnExcluir = document.querySelector(".button-trash");
-const btnSalvar = document.querySelector(".acoes-conta button");
+const btnSalvar  = document.querySelector(".acoes-conta button");
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const id = localStorage.getItem("usuarioIdSelecionado");
-  if (!id) return;
+let account = null;
 
+document.addEventListener("DOMContentLoaded", init);
+
+async function init() {
   try {
-    const usuarios = await Services.getUsers();
-    const user = usuarios.find(u => u._id === id);
+    // tenta por id salvo; se falhar, pega a primeira conta
+    const savedId = localStorage.getItem("gt_accountId");
+    account = savedId
+      ? await Services.getAccount(savedId).catch(() => null)
+      : null;
 
-    if (user) {
-      formDados.nome.value = user.nome || "";
-      formDados.email.value = user.email || "";
-      formDados.telefone.value = user.telefone || "";
+    if (!account) {
+      const all = await Services.getAccounts();
+      const email = localStorage.getItem("gt_accountEmail");
+      account = (email && all.find(a => a.email === email)) || all[0] || null;
+      if (account) {
+        localStorage.setItem("gt_accountId", account._id);
+        localStorage.setItem("gt_accountEmail", account.email || "");
+      }
     }
+
+    if (!account) {
+      await alertAsync("Conta não encontrada. Crie a conta na tela inicial.", { title: "Ops!" });
+      return;
+    }
+
+    // Preenche
+    formDados.nome.value     = account.nome     || "";
+    formDados.email.value    = account.email    || "";
+    formDados.telefone.value = account.telefone || "";
+    formDados.email.readOnly = true;
+    formDados.email.style.opacity = .85;
   } catch (err) {
     console.error(err);
+    showToast({ message: "Erro ao carregar dados da conta.", variant: "error" });
   }
-});
+}
 
-btnSalvar.addEventListener("click", async (e) => {
+// Salvar dados básicos
+btnSalvar?.addEventListener("click", async (e) => {
   e.preventDefault();
-  const id = localStorage.getItem("usuarioIdSelecionado");
-
+  if (!account) return;
   try {
-    await Services.updateUser(id, {
-      nome: formDados.nome.value,
-      email: formDados.email.value,
-      telefone: formDados.telefone.value,
+    await Services.updateAccount(account._id, {
+      nome:     formDados.nome.value.trim(),
+      telefone: formDados.telefone.value.trim(),
     });
-    alert("Dados atualizados!");
+    showToast({ message: "Dados atualizados!", variant: "success" });
   } catch (err) {
     console.error(err);
-    alert("Erro ao salvar dados.");
+    showToast({ message: "Erro ao salvar dados.", variant: "error" });
   }
 });
 
-btnExcluir.addEventListener("click", async () => {
-  const id = localStorage.getItem("usuarioIdSelecionado");
-  if (confirm("Tem certeza que deseja excluir a conta?")) {
-    try {
-      await Services.deleteUser(id);
-      alert("Conta excluída!");
-      window.location.href = "usuarios.html";
-    } catch (err) {
-      console.error(err);
-      alert("Erro ao excluir conta.");
-    }
-  }
-});
-
-formSenha.addEventListener("submit", async (e) => {
+// Alterar senha (checa senha atual)
+formSenha?.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const novaSenha = formSenha["nova-senha"].value;
-  const confirma = formSenha["confirma-senha"].value;
+  if (!account) return;
 
-  if (novaSenha !== confirma) {
-    alert("As senhas não coincidem!");
-    return;
-  }
+  const atual   = formSenha["senha-atual"]?.value ?? "";
+  const nova    = formSenha["nova-senha"]?.value ?? "";
+  const confirma= formSenha["confirma-senha"]?.value ?? "";
 
-  const id = localStorage.getItem("usuarioIdSelecionado");
+  if (!atual) { await alertAsync("Informe a senha atual.", { title: "Atenção" }); return; }
+  if (nova.length < 6) { await alertAsync("A nova senha deve ter pelo menos 6 caracteres.", { title: "Atenção" }); return; }
+  if (nova !== confirma) { await alertAsync("As senhas não coincidem!", { title: "Erro" }); return; }
+
   try {
-    await Services.updateUser(id, { senha: novaSenha });
-    alert("Senha alterada!");
+    // recarrega a conta para garantir leitura correta
+    const fresh = await Services.getAccount(account._id);
+    if ((fresh.senha || "") !== atual) {
+      await alertAsync("Senha atual incorreta.", { title: "Erro" });
+      return;
+    }
+
+    await Services.updateAccount(account._id, { senha: nova });
+    account.senha = nova;
+    formSenha.reset();
+    showToast({ message: "Senha alterada com sucesso!", variant: "success" });
   } catch (err) {
     console.error(err);
-    alert("Erro ao alterar senha.");
+    showToast({ message: "Erro ao alterar senha.", variant: "error" });
+  }
+});
+
+// Excluir conta (apaga tudo)
+btnExcluir?.addEventListener("click", async () => {
+  const ok = await confirmAsync(
+    "Excluir a conta? Isso apagará TODOS os usuários e TODAS as listas.",
+    { title: "Confirmação" }
+  );
+  if (!ok) return;
+
+  try {
+    await Services.deleteAccountDeep(account?._id);
+    localStorage.removeItem("gt_accountId");
+    localStorage.removeItem("gt_accountEmail");
+    showToast({ message: "Conta excluída.", variant: "success" });
+    setTimeout(() => (window.location.href = "/html/index.html"), 700);
+  } catch (err) {
+    console.error(err);
+    showToast({ message: "Erro ao excluir conta.", variant: "error" });
   }
 });

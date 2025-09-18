@@ -1,4 +1,4 @@
-// js/nova-lista.js (versão corrigida)
+// js/nova-lista.js
 document.addEventListener("DOMContentLoaded", async () => {
   const qs = new URLSearchParams(location.search);
   let userId  = qs.get("userId")  || localStorage.getItem("gt_lastUserId");
@@ -7,12 +7,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const form        = document.getElementById("lista-form");
   const tituloLista = document.getElementById("titulo-lista");
-  const usuarioNome = document.getElementById("usuario-nome"); // se existir
+  const usuarioNome = document.getElementById("usuario-nome");
   const inputNovo   = document.getElementById("novo-item");
   const btnSalvar   = document.getElementById("salvar-lista");
   const itensBox    = document.getElementById("itens-container");
 
-  // Evita submit + reload ao apertar Enter
+  // Evita reload ao apertar Enter
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     btnSalvar.click();
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     lista = listaId ? listas.find(l => l._id === listaId) : null;
 
-    // fallback: pega a última lista do usuário (se veio sem listaId)
+    // fallback: última lista do usuário
     if (!lista && userId) {
       const minhas = listas.filter(l => l.userId === userId);
       lista = minhas[minhas.length - 1];
@@ -43,13 +43,12 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // persiste contexto para próximas páginas
+    // Persiste contexto
     localStorage.setItem("gt_lastUserId", lista.userId);
     localStorage.setItem("gt_lastListId", lista._id);
 
     // Título
     tituloLista.textContent = nomeQS || lista.nome || "Nova Lista";
-
   } catch (e) {
     console.error(e);
     tituloLista.textContent = "Erro ao carregar lista";
@@ -78,7 +77,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         const payload = { nome: lista.nome, userId: lista.userId, tarefas: novas };
         await Services.updateList(lista._id, payload);
-        lista.tarefas = novas; // mantém em memória
+        lista.tarefas = novas;
       });
     });
 
@@ -92,6 +91,8 @@ document.addEventListener("DOMContentLoaded", async () => {
         await Services.updateList(lista._id, payload);
         lista.tarefas = novas;
         render();
+
+        showToast({ message: "Item removido com sucesso!", variant: "success" });
       });
     });
   }
@@ -101,7 +102,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Adicionar tarefa
   btnSalvar.addEventListener("click", async () => {
     const texto = inputNovo.value.trim();
-    if (!texto) return alert("Digite um item válido!");
+    if (!texto) {
+      await alertAsync("Digite um item válido!", { title: "Aviso" });
+      return;
+    }
 
     const novas = Array.isArray(lista.tarefas) ? [...lista.tarefas] : [];
     novas.push({ texto, concluido: false });
@@ -112,5 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     lista.tarefas = novas;
     inputNovo.value = "";
     render();
+
+    showToast({ message: "Item adicionado com sucesso!", variant: "success" });
   });
 });

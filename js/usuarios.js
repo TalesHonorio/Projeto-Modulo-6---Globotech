@@ -7,23 +7,27 @@ const btnNovo =
 document.addEventListener("DOMContentLoaded", () => {
   carregarUsuarios();
 
-  if (btnNovo) {
-    btnNovo.addEventListener("click", () => {
-      window.location.href = "/html/cria-user.html";
-    });
-  }
+  btnNovo?.addEventListener("click", () => {
+    window.location.href = "/html/cria-user.html";
+  });
 });
 
 async function carregarUsuarios() {
   try {
-    const [usuarios, listas] = await Promise.all([
+    const [usuariosRaw, listas] = await Promise.all([
       Services.getUsers(),
       Services.getLists(),
     ]);
 
+    // ⚠️ Filtra qualquer registro que tenha sobrado como “account”
+    const accEmail = localStorage.getItem("gt_accountEmail");
+    const usuarios = usuariosRaw.filter(
+      u => !(u.tipo === "account" || (accEmail && u.email === accEmail))
+    );
+
     // Mapa userId -> quantidade de listas
     const contagem = listas.reduce((acc, l) => {
-      const uid = l.userId; // <— padrão do projeto
+      const uid = l.userId;
       if (!uid) return acc;
       acc[uid] = (acc[uid] || 0) + 1;
       return acc;
@@ -44,11 +48,9 @@ function renderUsuarios(usuarios, contagem) {
       const qtd = contagem[u._id] || 0;
       const plural = qtd === 1 ? "lista" : "listas";
       const nome = u.nome || u.email || "Sem nome";
-
       return `
         <article data-id="${u._id}">
           <button class="button-trash" title="Excluir usuário"></button>
-
           <div>
             <div>
               <span>Nome</span>
@@ -56,7 +58,6 @@ function renderUsuarios(usuarios, contagem) {
             </div>
             <button type="button" class="btn-editar">editar</button>
           </div>
-
           <div>
             <div>
               <span>Listas</span>
@@ -69,31 +70,38 @@ function renderUsuarios(usuarios, contagem) {
     })
     .join("");
 
-  // Handlers por card
   usersGrid.querySelectorAll("article").forEach((card) => {
     const id = card.dataset.id;
 
-    // Excluir
+    // Excluir (com cascata)
     card.querySelector(".button-trash").addEventListener("click", async () => {
-      if (!confirm("Excluir este usuário? (as listas permanecerão)")) return;
+      const ok = await confirmAsync("Excluir este usuário? As listas dele serão apagadas.");
+      if (!ok) return;
       try {
-        await Services.deleteUser(id);
+        await Services.deleteUserWithLists(id);
+        showToast({ message: "Usuário excluído.", variant: "success" });
         carregarUsuarios();
       } catch (e) {
-        alert("Erro ao excluir usuário");
+        console.error(e);
+        showToast({ message: "Erro ao excluir usuário.", variant: "error" });
       }
     });
 
-    // Editar
+    // Editar (usa modal prompt)
     card.querySelector(".btn-editar").addEventListener("click", async () => {
       const atual = card.querySelector("p").textContent.trim();
-      const novoNome = prompt("Novo nome do usuário:", atual);
-      if (!novoNome) return;
+      const novoNome = await promptAsync("Novo nome do usuário:", {
+        initialValue: atual,
+        placeholder: "Digite o novo nome",
+      });
+      if (!novoNome || !novoNome.trim()) return;
       try {
-        await Services.updateUser(id, { nome: novoNome });
+        await Services.updateUser(id, { nome: novoNome.trim() });
+        showToast({ message: "Usuário atualizado!", variant: "success" });
         carregarUsuarios();
       } catch (e) {
-        alert("Erro ao atualizar usuário");
+        console.error(e);
+        showToast({ message: "Erro ao atualizar usuário.", variant: "error" });
       }
     });
 

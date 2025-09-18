@@ -50,13 +50,26 @@
 }
 
 /* ------------------ Resetar estilos base -------------------*/
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   background: var(--color-gradient);
   min-height: 100vh;
   width: calc(100% - 60px);
   margin: 0;
   font-family: var(--font-family);
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* header - main - footer */
+  min-height: 100vh;
 }
+
+main {
+  flex: 1;
+}
+
 ul {
   padding: 0;
   margin: 0;
@@ -221,12 +234,14 @@ p {
 }
 
 /* ------------------ Estilizar footer -------------------*/
-footer {
-  color: var(--color-cinza);
+.footer {
+  grid-row: -1; /* footer sempre na última linha */
   text-align: center;
-  font-size: var(--font-p);
-  
+  color: var(--color-tom-escuro);
+  font-size: var(--font-caption);
+  padding: 12px 0;
 }
+
 
 /* ------------------ Estilizar componentes gerais -------------------*/
 .item {
@@ -264,6 +279,148 @@ footer {
   mask-position: center;
   mask-size: cover;
 }
+
+/* ---------- Modal ---------- */
+.gt-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  opacity: 1;
+  transition: opacity .16s ease;
+}
+.gt-modal-overlay.closing { opacity: 0; }
+
+.gt-modal {
+  width: min(440px, 92vw);
+  background: var(--color-branco);
+  color: var(--color-letras);
+  border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(0,0,0,.25);
+  padding: 20px;
+  font-family: var(--font-family);
+}
+
+.gt-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.gt-modal-header h4 {
+  color: var(--color-letras);
+  font-size: 22px;
+  margin: 0;
+}
+.gt-close {
+  background: none;
+  border: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-letras);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gt-close:hover { background: rgba(0,0,0,.06); }
+
+.gt-modal-body {
+  margin: 12px 0;
+}
+.gt-modal-body p {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: var(--color-letras);
+}
+
+/* Campo de input no prompt */
+.gt-input {
+  display: block;
+  width: 90%;               /* ocupa só 90% da largura do modal */
+  max-width: 320px;         /* nunca passa disso */
+  margin: 0 auto;           /* centraliza dentro do modal */
+  border: 1px solid var(--color-cinza);
+  border-radius: 8px;
+  background: var(--color-fundo);
+  color: var(--color-letras);
+  padding: 10px 12px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.gt-input:focus {
+  border-color: var(--color-tom-escuro);
+  box-shadow: 0 0 0 3px rgba(82,145,246,.25);
+  background: var(--color-branco);
+}
+
+.gt-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 18px;
+}
+.gt-btn {
+  min-width: 90px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: var(--font-regular);
+  transition: background-color 0.2s, transform 0.1s;
+}
+.gt-btn:active {
+  transform: scale(0.96);
+}
+.gt-btn-primary {
+  background: var(--color-tom-escuro);
+  color: var(--color-branco);
+  font-weight: var(--font-bold);
+}
+.gt-btn-primary:hover { background: var(--color-tema1); }
+
+.gt-btn-secondary {
+  background: #e5e5e5;
+  color: #333;
+}
+.gt-btn-secondary:hover { background: #d6d6d6; }
+
+/* ---------- Toast ---------- */
+.gt-toast-container {
+  position: fixed;
+  bottom: max(16px, env(safe-area-inset-bottom));
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 3500;
+}
+.gt-toast {
+  min-width: 200px;
+  max-width: 360px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: var(--color-letras);
+  color: var(--color-branco);
+  transform: translateY(6px);
+  opacity: 0;
+  transition: transform .18s ease, opacity .18s ease;
+  box-shadow: 0 12px 30px rgba(0,0,0,.2);
+}
+.gt-toast.in { transform: translateY(0); opacity: 1; }
+.gt-toast.success { background: var(--color-tom-escuro); }
+.gt-toast.error   { background: #c74747; }
+.gt-toast.info    { background: #3b82f6; }
+
+
 
 /* ------------------ Estilizar formulários -------------------*/
 form {
@@ -373,7 +530,10 @@ article button {
   position: absolute;
   top: 10px;
   right: 10px;
+  padding: 10px;
 }
+
+
 
 /* ------------------ Estilizar página de listas (layout dos cards) -------------------*/
 .content-listas {
@@ -395,7 +555,10 @@ article button {
   padding: 16px;
   margin-inline: auto;
   width: 300px;
+  position: relative;
 }
+
+
 .lista h4 {
   color: var(--color-letras);
   text-align: center;
@@ -677,11 +840,8 @@ button:hover {
 }
 .menu-lateral li a:hover {
   background-color: var(--color-tema1); /* roxo ao hover */
-}
+  text-decoration: none;
 
-
-    text-decoration: none;
-  }
 }
 
 /* Mobile (<= 768px) – transformar em barra inferior */
@@ -742,7 +902,7 @@ button:hover {
   .listas {
     flex-direction: column;
   }
-}
+}}
 
 /* ------------------ Aplicar pacote mobile (layout geral) -------------------*/
 @media (max-width: 768px) {

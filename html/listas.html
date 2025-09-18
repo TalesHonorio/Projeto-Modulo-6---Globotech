@@ -16,27 +16,37 @@
 <body>
   <!-- Header -->
   <div id="header-container"></div>
-
+  
+<section id="listas" class="content-listas">
   <div class="content-select">
     <h4>Usuário selecionado:</h4>
     <div class="select-container">
       <select id="usuario"></select>
     </div>
+    
   </div>
 
-  <section id="listas" class="grid-listas"></section>
+  <!-- alvo para os cards criados via JS -->
+  <div class="listas" id="listas-conteudo"></div>
+
+  <!-- Botão nova lista -->
+  <div class="btn">
+    <button id="btnNovaLista" type="button">nova lista</button>
+  </div>
+</section>
+
+
+  
+<!-- Scripts globais -->
+<script src="../js/modal.js"></script>
+<script src="../js/services.js"></script>
+<script src="../js/app.js"></script>
+
+<!-- Script específico -->
+<script src="../js/listas.js"></script>
+
 
   <!-- Footer -->
   <div id="footer-container"></div>
-
-  <!-- Scripts globais -->
-  <script src="../js/services.js"></script>
-  <script src="../js/app.js"></script>
-  <script src="../js/users.js"></script>
-  <script src="../js/lists.js"></script>
-  <script src="../js/tasks.js"></script>
-
-  <!-- Script específico -->
-  <script src="../js/listas.js"></script>
 </body>
 </html>

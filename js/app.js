@@ -15,3 +15,4 @@ document.addEventListener("DOMContentLoaded", () => {
   loadPartial("header-container", "../components/header.html");
   loadPartial("footer-container", "../components/footer.html");
 });
+

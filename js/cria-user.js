@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!nome || !listaNome) {
       form.reportValidity?.();
-      alert("Preencha todos os campos!");
+      await alertAsync("Preencha todos os campos!", { title: "Atenção" });
       return;
     }
 
@@ -35,6 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("gt_lastUserId", novoUsuario._id);
       localStorage.setItem("gt_lastListId", novaLista._id);
 
+      // feedback visual
+      showToast({ message: "Usuário e lista criados com sucesso!", variant: "success" });
+
       // 3) Redireciona com todos os parâmetros necessários
       const url = `/html/nova-lista.html` +
         `?userId=${encodeURIComponent(novoUsuario._id)}` +
@@ -44,14 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.href = url;
     } catch (err) {
       console.error("Erro ao criar usuário/lista:", err);
-      alert("Erro ao criar usuário/lista. Verifique sua chave do CrudCrud e tente novamente.");
+      showToast({
+        message: "Erro ao criar usuário/lista. Verifique sua chave do CrudCrud e tente novamente.",
+        variant: "error"
+      });
     }
   });
 });
-
-// final do cria-user.js
-const url = `/html/nova-lista.html` +
-  `?userId=${encodeURIComponent(novoUsuario._id)}` +
-  `&listaId=${encodeURIComponent(novaLista._id)}` +
-  `&nomeLista=${encodeURIComponent(novaLista.nome)}`;
-window.location.href = url;
