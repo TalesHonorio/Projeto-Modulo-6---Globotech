@@ -1,6 +1,6 @@
 # Projeto Módulo 6 — Globotech
 
-Projeto Fase 6 - Sistema de Controle de Tarefas (To-Do List com API e JavaScript)Projeto Módulo 5 — Globotech
+Projeto Fase 6 - Sistema de Controle de Tarefas (To-Do List com API e JavaScript)
 > Status do módulo: Front-End dinâmico (HTML + CSS + JavaScript).
 Neste módulo, os dados deixam de ser mockados no HTML e passam a ser manipulados via JavaScript, com persistência em uma API REST (crudcrud).
 
@@ -27,36 +27,37 @@ Evoluir o protótipo do Módulo 5, implementando:
 ```
 Projeto-Modulo-6---Globotech/
 │
-├── assets/              # Recursos visuais
-│   ├── globotask.png
-│   └── home.png
+├── assets/ # Recursos visuais
+│ ├── globotask.png
+│ └── home.png
 │
-├── components/          # Componentes reutilizáveis (header, footer)
-│   ├── header.html
-│   └── footer.html
+├── components/ # Componentes reutilizáveis
+│ ├── footer.html
+│ └── header.html
 │
 ├── css/
-│   └── style.css        # Estilos globais e responsivos
+│ └── style.css # Estilos globais e responsivos
 │
-├── html/                # Estrutura das páginas
-│   ├── conta.html       # Conta principal
-│   ├── cria-user.html   # Criação de usuários
-│   ├── index.html       # Página inicial
-│   ├── listas.html      # Listas de tarefas
-│   ├── nova-lista.html  # Criar nova lista
-│   └── usuarios.html    # Usuários cadastrados
+├── html/ # Estrutura das páginas
+│ ├── conta.html # Tela da conta principal
+│ ├── cria-user.html # Criação de usuários
+│ ├── index.html # Página inicial
+│ ├── listas.html # Listas de tarefas
+│ ├── nova-lista.html # Criar nova lista
+│ └── usuarios.html # Usuários cadastrados
 │
-├── js/                  # Scripts modulares
-│   ├── app.js           # Inicialização global e componentes
-│   ├── conta.js         # Lógica da tela de conta
-│   ├── cria-user.js     # Lógica de criação de usuário
-│   ├── index.js         # Lógica da home
-│   ├── listas.js        # Lógica da tela de listas
-│   ├── nova-lista.js    # Lógica de criação de lista
-│   ├── usuarios.js      # Lógica da tela de usuários
-│   └── services.js      # Comunicação com API (crudcrud)
+├── js/ # Scripts modulares
+│ ├── app.js # Inicialização global
+│ ├── conta.js # Lógica da tela de conta
+│ ├── cria-user.js # Lógica de criação de usuário
+│ ├── index.js # Lógica da home
+│ ├── listas.js # Lógica da tela de listas
+│ ├── modal.js # Controle de modais (prompt/confirm)
+│ ├── nova-lista.js # Lógica de criação de lista
+│ ├── services.js # Comunicação com API (crudcrud)
+│ └── usuarios.js # Lógica da tela de usuários
 │
-├── node_modules/        # Dependências (quando usar npm)
+├── node_modules/ # Dependências npm
 │
 ├── LICENSE
 ├── package.json
@@ -94,7 +95,11 @@ Implementação de ingestão via fila FIFO e gerenciamento de dados através de 
 **Fase 4 – Projeto Unificado com Banco de Dados Relacional**
 Integração do sistema de análise de engajamento com persistência em banco de dados MySQL. Abrange modelagem conceitual e lógica (MER/DER), criação do schema relacional, carga de dados automatizada e execução de consultas SQL para análises otimizadas. O projeto consolida as fases anteriores em uma arquitetura escalável e estruturada, conectando Python e SQL de forma integrada.
 
+🔗 [Projeto-Modulo-5 — Globotech](https://github.com/mirrabernardo/Projeto-Modulo-5---Globotech)
 
+**Fase 5 – Sistema de Controle de Tarefas (Front-End Estático com HTML e CSS)**  
+Implementação inicial da aplicação GloboTasks, um sistema de gerenciamento de tarefas simples.  
+Nessa fase, o foco foi na estruturação visual e estática do front-end.
 
 ## Equipe
 
