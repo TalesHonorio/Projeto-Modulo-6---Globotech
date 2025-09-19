@@ -2,7 +2,7 @@
 const API_BASE = "https://crudcrud.com/api/200b70a1ec974fe8ab3bd89399f772ae";
 
 // Endpoints
-const ACCOUNTS_ENDPOINT = `${API_BASE}/accounts`; // 👈 NOVO
+const ACCOUNTS_ENDPOINT = `${API_BASE}/accounts`; // NOVO
 const USERS_ENDPOINT    = `${API_BASE}/users`;
 const LISTS_ENDPOINT    = `${API_BASE}/lists`;
 const TASKS_ENDPOINT    = `${API_BASE}/tasks`;

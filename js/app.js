@@ -11,7 +11,7 @@ async function loadPartial(id, file) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 👇 como o index.html está dentro de /html/, precisamos voltar um nível
+  // como o index.html está dentro de /html/, precisamos voltar um nível
   loadPartial("header-container", "../components/header.html");
   loadPartial("footer-container", "../components/footer.html");
 });
